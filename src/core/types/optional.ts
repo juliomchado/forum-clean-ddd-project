@@ -9,7 +9,7 @@
  *  email: string;
  * }
  *
- * Optional<Post, 'id' | 'email'>
+ * Optional<Post, 'id'  | 'email'>
  * ```
  **/
 
