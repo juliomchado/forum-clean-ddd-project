@@ -1,15 +1,15 @@
 import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-repository";
 import { CreateQuestionUseCase } from "./create-question";
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions-repository";
-import { CreateAnswerQuestionUseCase } from "./create-answer-question";
+import { CreateAnswerUseCase } from "./create-answer";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
-let sut: CreateAnswerQuestionUseCase;
+let sut: CreateAnswerUseCase;
 
 describe("Create answers question ", () => {
   beforeEach(() => {
     inMemoryAnswersRepository = new InMemoryAnswersRepository();
-    sut = new CreateAnswerQuestionUseCase(inMemoryAnswersRepository);
+    sut = new CreateAnswerUseCase(inMemoryAnswersRepository);
   });
 
   test("should be able to create a question", async () => {
