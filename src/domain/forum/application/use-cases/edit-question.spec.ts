@@ -12,8 +12,8 @@ describe("Edit question", () => {
     sut = new EditQuestionUseCase(inMemoryQuestionsRepository);
   });
 
-  test("should be able to edit a question", async () => {
-    const { question } = makeQuestion(
+  it("should be able to edit a question", async () => {
+    const question = makeQuestion(
       {
         authorId: new UniqueEntityID("author-id"),
       },
@@ -36,8 +36,8 @@ describe("Edit question", () => {
     expect(inMemoryQuestionsRepository.items).toHaveLength(1);
   });
 
-  test("should not be able to edit a question from another user", async () => {
-    const { question } = makeQuestion(
+  it("should not be able to edit a question from another user", async () => {
+    const question = makeQuestion(
       {
         authorId: new UniqueEntityID("author-id-1"),
       },

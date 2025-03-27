@@ -19,8 +19,8 @@ describe("Choose question best answer ", () => {
     );
   });
 
-  test("should be able to choose the question best answer", async () => {
-    const { question } = makeQuestion();
+  it("should be able to choose the question best answer", async () => {
+    const question = makeQuestion();
     const { answer } = makeAnswer(
       {
         questionId: question.id,
@@ -41,8 +41,8 @@ describe("Choose question best answer ", () => {
     );
   });
 
-  test("should not be able to choose another user question best answer", async () => {
-    const { question } = makeQuestion({
+  it("should not be able to choose another user question best answer", async () => {
+    const question = makeQuestion({
       authorId: new UniqueEntityID("author-wrong-id"),
     });
     const { answer } = makeAnswer(

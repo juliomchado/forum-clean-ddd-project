@@ -12,7 +12,7 @@ describe("Edit answer", () => {
     sut = new EditAnswerUseCase(inMemoryAnswersRepository);
   });
 
-  test("should be able to edit a answer", async () => {
+  it("should be able to edit a answer", async () => {
     const { answer } = makeAnswer(
       {
         authorId: new UniqueEntityID("author-id"),
@@ -34,7 +34,7 @@ describe("Edit answer", () => {
     expect(inMemoryAnswersRepository.items).toHaveLength(1);
   });
 
-  test("should not be able to edit a answer from another user", async () => {
+  it("should not be able to edit a answer from another user", async () => {
     const { answer } = makeAnswer(
       {
         authorId: new UniqueEntityID("author-id-1"),

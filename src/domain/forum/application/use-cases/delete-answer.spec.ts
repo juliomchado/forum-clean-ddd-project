@@ -12,7 +12,7 @@ describe("Delete answer", () => {
     sut = new DeleteAnswerUseCase(inMemoryAnswersRepository);
   });
 
-  test("should be able to delete a answer", async () => {
+  it("should be able to delete a answer", async () => {
     const { answer } = makeAnswer(
       {
         authorId: new UniqueEntityID("author-id"),
@@ -30,7 +30,7 @@ describe("Delete answer", () => {
     expect(inMemoryAnswersRepository.items).toHaveLength(0);
   });
 
-  test("should not be able to delete a answer from another user", async () => {
+  it("should not be able to delete a answer from another user", async () => {
     const { answer } = makeAnswer(
       {
         authorId: new UniqueEntityID("author-id-1"),
