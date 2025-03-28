@@ -39,15 +39,15 @@ describe("Fetch recent questions", () => {
       }),
     ]);
   });
-  //   it("should be able to fetch paginated recent questions", async () => {
-  //     for (let i = 1; i <= 22; i++) {
-  //       await inMemoryQuestionsRepository.create(makeQuestion());
-  //     }
+  it("should be able to fetch paginated recent questions", async () => {
+    for (let i = 1; i <= 22; i++) {
+      await inMemoryQuestionsRepository.create(makeQuestion());
+    }
 
-  //     const { questions } = await sut.execute({
-  //       page: 2,
-  //     });
+    const { questions } = await sut.execute({
+      page: 2,
+    });
 
-  //     expect(questions).toHaveLength(2);
-  //   });
+    expect(questions).toHaveLength(2);
+  });
 });
