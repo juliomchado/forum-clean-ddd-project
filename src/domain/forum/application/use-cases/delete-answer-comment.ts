@@ -1,12 +1,14 @@
+import { Either } from "./../../../../core/either";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { AnswerCommentsRepository } from "../repositories/answer-comments-repository";
+import { left, right } from "@/core/either";
 
 interface DeleteAnswerCommentUseCaseRequest {
   authorId: string;
   answerCommentId: string;
 }
 
-interface DeleteAnswerCommentUseCaseResponse {}
+type DeleteAnswerCommentUseCaseResponse = Either<string, {}>;
 
 export class DeleteAnswerCommentUseCase {
   constructor(private answerCommentsRepository: AnswerCommentsRepository) {}
@@ -20,15 +22,15 @@ export class DeleteAnswerCommentUseCase {
     );
 
     if (!answerComment) {
-      throw new Error("Answer not found.");
+      return left("Answer not found.");
     }
 
     if (answerComment.authorId.toString() !== authorId) {
-      throw new Error("Not allowed.");
+      return left("Not allowed.");
     }
 
     await this.answerCommentsRepository.delete(answerComment);
 
-    return {};
+    return right({});
   }
 }
