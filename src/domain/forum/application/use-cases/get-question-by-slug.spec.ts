@@ -4,13 +4,19 @@ import { Question } from "../../enterprise/entities/question";
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { Slug } from "../../enterprise/entities/value-objects/slug";
 import { makeQuestion } from "test/factories/make-question";
+import { InMemoryQuestionAttachmentsRepository } from "test/repositories/in-memory-question-attachments-repository";
 
+let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let sut: GetQuestionBySlugUseCase;
 
 describe("Get question by slug", () => {
   beforeEach(() => {
-    inMemoryQuestionsRepository = new InMemoryQuestionsRepository();
+    inMemoryQuestionAttachmentsRepository =
+      new InMemoryQuestionAttachmentsRepository();
+    inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
+      inMemoryQuestionAttachmentsRepository
+    );
     sut = new GetQuestionBySlugUseCase(inMemoryQuestionsRepository);
   });
 
