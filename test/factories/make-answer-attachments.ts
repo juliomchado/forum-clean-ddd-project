@@ -1,14 +1,13 @@
-import { faker } from "@faker-js/faker";
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
-import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import {
   AnswerAttachment,
   AnswerAttachmentProps,
-} from "@/domain/forum/enterprise/entities/answer-attachment";
+} from '@/domain/forum/enterprise/entities/answer-attachment'
 
 export function makeAnswerAttachment(
   override: Partial<AnswerAttachmentProps> = {},
-  id?: UniqueEntityID
+  id?: UniqueEntityID,
 ) {
   const answerAttachment = AnswerAttachment.create(
     {
@@ -16,8 +15,8 @@ export function makeAnswerAttachment(
       attachmentId: new UniqueEntityID(),
       ...override,
     },
-    id
-  );
+    id,
+  )
 
-  return answerAttachment;
+  return answerAttachment
 }

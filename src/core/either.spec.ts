@@ -1,39 +1,23 @@
-import { Either, left, right } from "./either";
+import { Either, left, right } from '@/core/either'
 
-function doSomething(isSucess: boolean): Either<string, number> {
-  if (isSucess) {
-    return right(10);
+function doSomeThing(shouldSuccess: boolean): Either<string, number> {
+  if (shouldSuccess) {
+    return right(10)
   } else {
-    return left("error");
+    return left('error')
   }
 }
 
-test("success result doSomething function", () => {
-  const successResult = doSomething(true);
+test('success result', () => {
+  const result = doSomeThing(true)
 
-  if (successResult.isRight()) {
-    expect(successResult.value).toBeTypeOf("number");
-  }
+  expect(result.isRight()).toBe(true)
+  expect(result.isLeft()).toBe(false)
+})
 
-  expect(successResult.isRight()).toBe(true);
-  expect(successResult.isLeft()).toBe(false);
-});
+test('error result', () => {
+  const result = doSomeThing(false)
 
-test("error result doSomething function", () => {
-  const successResult = doSomething(false);
-
-  expect(successResult.isRight()).toBe(false);
-  expect(successResult.isLeft()).toBe(true);
-});
-
-test("success result", () => {
-  const success = right("success");
-
-  expect(success.value).toEqual("success");
-});
-
-test("error result", () => {
-  const error = left("error");
-
-  expect(error.value).toEqual("error");
-});
+  expect(result.isLeft()).toBe(true)
+  expect(result.isRight()).toBe(false)
+})

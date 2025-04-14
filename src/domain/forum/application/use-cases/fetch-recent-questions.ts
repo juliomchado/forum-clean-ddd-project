@@ -1,19 +1,17 @@
-import { UniqueEntityID } from "@/core/entities/unique-entity-id";
-import { Answer } from "../../enterprise/entities/answer";
-import { Question } from "../../enterprise/entities/question";
-import { QuestionsRepository } from "../repositories/question-repository";
-import { Either, right } from "@/core/either";
+import { Question } from '@/domain/forum/enterprise/entities/question'
+import { QuestionsRepository } from '../repositories/questions-repository'
+import { Either, right } from '@/core/either'
 
 interface FetchRecentQuestionsUseCaseRequest {
-  page: number;
+  page: number
 }
 
 type FetchRecentQuestionsUseCaseResponse = Either<
   null,
   {
-    questions: Question[];
+    questions: Question[]
   }
->;
+>
 
 export class FetchRecentQuestionsUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
@@ -21,10 +19,10 @@ export class FetchRecentQuestionsUseCase {
   async execute({
     page,
   }: FetchRecentQuestionsUseCaseRequest): Promise<FetchRecentQuestionsUseCaseResponse> {
-    const questions = await this.questionsRepository.findManyRecent({ page });
+    const questions = await this.questionsRepository.findManyRecent({ page })
 
     return right({
       questions,
-    });
+    })
   }
 }
